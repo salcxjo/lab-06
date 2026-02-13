@@ -3,10 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.listycity"
-    compileSdk {
-        version = release(36)
+    testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
     }
+    namespace = "com.example.listycity"
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.listycity"
@@ -31,14 +34,26 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    // Source - https://stackoverflow.com/a/73009440
+// Posted by Sriraksha, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-02-13, License - CC BY-SA 4.0
+
 }
 
+
+
 dependencies {
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.11.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)
+    implementation(files("C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\platforms\\android-36\\android.jar"))
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.0")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.11.0")
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
 }
